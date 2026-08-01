@@ -1,0 +1,221 @@
+[
+  {
+    "id": "md-01",
+    "name": "Heavyweight Straight Denim",
+    "department": "Men",
+    "category": "Men's Denim",
+    "images": [
+      "https://picsum.photos/id/1005/1000/1250",
+      "https://picsum.photos/id/1011/1000/1250",
+      "https://picsum.photos/id/1027/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "Regular",
+    "fabric": "99% Cotton, 1% Elastane, 12.5oz",
+    "colors": [
+      { "name": "Indigo Rinse", "hex": "#3A4A7A" },
+      { "name": "Raw Black", "hex": "#1C1C1E" },
+      { "name": "Mid Wash", "hex": "#6B7DAE" }
+    ],
+    "wash": "Enzyme Wash + PP Spray",
+    "season": "Autumn 27",
+    "sizeRange": "28 – 40",
+    "details": "Five-pocket construction on a heavyweight 12.5oz denim base, built for durability without sacrificing hand-feel. Chain-stitched hem, contrast selvage tape at coin pocket, and a garment wash calibrated for a lived-in finish straight off the line.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "md-02",
+    "name": "Tapered Stretch Denim",
+    "department": "Men",
+    "category": "Men's Denim",
+    "images": [
+      "https://picsum.photos/id/1015/1000/1250",
+      "https://picsum.photos/id/1016/1000/1250",
+      "https://picsum.photos/id/1025/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "Tapered",
+    "fabric": "98% Cotton, 2% Elastane, 11oz",
+    "colors": [
+      { "name": "Jet Black", "hex": "#141414" },
+      { "name": "Stone Grey", "hex": "#8C8B85" }
+    ],
+    "wash": "Stone Wash + Whisker Effect",
+    "season": "Autumn 27",
+    "sizeRange": "28 – 38",
+    "details": "A tapered leg silhouette in a comfort-stretch base cloth, developed for brands moving toward a slimmer everyday denim block. Hand-sanded whiskers at the thigh and a clean, low-bulk waistband.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "ms-01",
+    "name": "Cargo Utility Short",
+    "department": "Men",
+    "category": "Men's Shorts",
+    "images": [
+      "https://picsum.photos/id/1060/1000/1250",
+      "https://picsum.photos/id/1074/1000/1250",
+      "https://picsum.photos/id/1080/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "Regular",
+    "fabric": "100% Cotton Ripstop, 6.5oz",
+    "colors": [
+      { "name": "Olive", "hex": "#5C5C43" },
+      { "name": "Khaki", "hex": "#B8A98A" },
+      { "name": "Black", "hex": "#1B1B1B" }
+    ],
+    "wash": "Garment Dye",
+    "season": "Autumn 27",
+    "sizeRange": "28 – 40",
+    "details": "Six-pocket utility short in a durable ripstop cloth, garment-dyed for tonal depth. Reinforced bartacks at every stress point and a articulated knee-to-hem taper for movement.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "mo-01",
+    "name": "Quilted Field Jacket",
+    "department": "Men",
+    "category": "Men's Outerwear",
+    "images": [
+      "https://picsum.photos/id/1040/1000/1250",
+      "https://picsum.photos/id/1043/1000/1250",
+      "https://picsum.photos/id/1048/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "Regular",
+    "fabric": "Shell: 65% Poly 35% Cotton — Fill: 100% Recycled Poly",
+    "colors": [
+      { "name": "Forest", "hex": "#2E3B2E" },
+      { "name": "Camel", "hex": "#B08655" }
+    ],
+    "wash": "N/A — Garment Finished",
+    "season": "Autumn 27",
+    "sizeRange": "S – XXL",
+    "details": "Diamond-quilted field jacket with a recycled fill, corduroy under-collar, and a storm placket. Developed as a transitional outerwear block for AW27 ranges.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "wd-01",
+    "name": "High-Rise Straight Denim",
+    "department": "Women",
+    "category": "Women's Denim",
+    "images": [
+      "https://picsum.photos/id/1062/1000/1250",
+      "https://picsum.photos/id/1069/1000/1250",
+      "https://picsum.photos/id/1082/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "High-Rise Straight",
+    "fabric": "98% Cotton, 2% Elastane, 10.5oz",
+    "colors": [
+      { "name": "Vintage Blue", "hex": "#5A6E9C" },
+      { "name": "Ecru", "hex": "#DCD3BF" },
+      { "name": "Black Rinse", "hex": "#242424" }
+    ],
+    "wash": "Enzyme Wash + PP Spray",
+    "season": "Autumn 27",
+    "sizeRange": "24 – 32",
+    "details": "A high-rise straight leg on a recovery-stretch base cloth, finished with an enzyme wash and light PP spray for a soft, worn-in surface. Curved waistband engineered for all-day comfort.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "ws-01",
+    "name": "Wide-Leg Denim Short",
+    "department": "Women",
+    "category": "Women's Shorts",
+    "images": [
+      "https://picsum.photos/id/1084/1000/1250",
+      "https://picsum.photos/id/1039/1000/1250",
+      "https://picsum.photos/id/1035/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "Wide-Leg",
+    "fabric": "99% Cotton, 1% Elastane, 9oz",
+    "colors": [
+      { "name": "Light Wash", "hex": "#A9BADB" },
+      { "name": "White", "hex": "#F4F2EC" }
+    ],
+    "wash": "Acid Wash",
+    "season": "Autumn 27",
+    "sizeRange": "24 – 32",
+    "details": "Relaxed wide-leg short with a raw hem finish and an acid wash surface treatment. Designed as a directional style within a broader AW27 denim shorts capsule.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "wo-01",
+    "name": "Oversized Wool-Blend Coat",
+    "department": "Women",
+    "category": "Women's Outerwear",
+    "images": [
+      "https://picsum.photos/id/1050/1000/1250",
+      "https://picsum.photos/id/1052/1000/1250",
+      "https://picsum.photos/id/1054/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "Oversized",
+    "fabric": "80% Wool, 20% Polyester",
+    "colors": [
+      { "name": "Camel", "hex": "#BA9367" },
+      { "name": "Charcoal", "hex": "#3A3A3E" }
+    ],
+    "wash": "N/A — Dry Finished",
+    "season": "Autumn 27",
+    "sizeRange": "XS – XL",
+    "details": "An oversized wool-blend coat with dropped shoulders and a fully canvassed front. Built as a hero outerwear piece for AW27 ranges, with bound buttonholes and a satin-back lining.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "kb-01",
+    "name": "Boys' Slim Denim",
+    "department": "Kids",
+    "category": "Boys",
+    "images": [
+      "https://picsum.photos/id/1074/1000/1250",
+      "https://picsum.photos/id/1080/1000/1250",
+      "https://picsum.photos/id/1084/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "Slim",
+    "fabric": "99% Cotton, 1% Elastane, 9.5oz",
+    "colors": [
+      { "name": "Mid Blue", "hex": "#5D75AE" },
+      { "name": "Black", "hex": "#1D1D1D" }
+    ],
+    "wash": "Enzyme Wash",
+    "season": "Autumn 27",
+    "sizeRange": "4 – 14 yrs",
+    "details": "A scaled-down slim denim in a soft-hand stretch cloth, adjustable inner waistband for growing fits, and reinforced knees for everyday play.",
+    "designer": "Waliullah Shipon"
+  },
+  {
+    "id": "kg-01",
+    "name": "Girls' A-Line Denim Skirt",
+    "department": "Kids",
+    "category": "Girls",
+    "images": [
+      "https://picsum.photos/id/1027/1000/1250",
+      "https://picsum.photos/id/1005/1000/1250",
+      "https://picsum.photos/id/1011/1000/1250"
+    ],
+    "video": "",
+    "buyer": "Own Development",
+    "fit": "A-Line",
+    "fabric": "99% Cotton, 1% Elastane, 8.5oz",
+    "colors": [
+      { "name": "Light Wash", "hex": "#B7C6E4" },
+      { "name": "Pink Overdye", "hex": "#D89AA6" }
+    ],
+    "wash": "PP Spray",
+    "season": "Autumn 27",
+    "sizeRange": "4 – 14 yrs",
+    "details": "An A-line denim skirt with an adjustable elastic waistband, topstitched seams, and a soft PP spray finish for a lightly faded surface.",
+    "designer": "Waliullah Shipon"
+  }
+]

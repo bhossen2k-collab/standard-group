@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capabilities — Standard Group</title>
+<meta name="description" content="Browse Standard Group's full apparel capability across Men's, Women's and Kids' denim, shorts, outerwear and more.">
+<link rel="icon" href="assets/images/logo/logo.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/images/logo/logo.svg" alt="Standard Group logo">
+      <span class="brand-word">Standard <span>Group</span></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="is-active">Capabilities</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="index.html#contact">Start a Development</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Full Catalog</span>
+      <h1>Our capability, by department.</h1>
+      <p class="sub">Every style below is own-development — filter by department and line, then open any product for its full spec sheet, colourways and imagery.</p>
+    </div>
+  </section>
+
+  <div class="filter-bar">
+    <div class="wrap">
+      <span class="filter-label">Department</span>
+      <div id="filter-department" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+    </div>
+  </div>
+  <div class="filter-bar" style="top:calc(84px + 65px);">
+    <div class="wrap">
+      <span class="filter-label">Line</span>
+      <div id="filter-category" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+    </div>
+  </div>
+
+  <section class="product-grid wrap" id="product-grid">
+    <!-- populated by assets/js/main.js -->
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-word">Standard <span>Group</span></span>
+        </a>
+        <p>Full-package garment manufacturer developing Men's, Women's and Kids' apparel for global fashion brands and retailers.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Capability</h5>
+        <a href="products.html?department=Men">Men's</a>
+        <a href="products.html?department=Women">Women's</a>
+        <a href="products.html?department=Kids">Kids'</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="index.html#about">About</a>
+        <a href="index.html#capabilities">Capabilities</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <p>hello@standardgroup.example</p>
+        <p>Dhaka, Bangladesh</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Standard Group. All rights reserved.</span>
+      <span>Season: Autumn 27</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
