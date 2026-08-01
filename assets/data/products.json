@@ -9,7 +9,7 @@
       "https://picsum.photos/id/1011/1000/1250",
       "https://picsum.photos/id/1027/1000/1250"
     ],
-    "video": "",
+    "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     "buyer": "Own Development",
     "fit": "Regular",
     "fabric": "99% Cotton, 1% Elastane, 12.5oz",
@@ -103,9 +103,9 @@
     "department": "Women",
     "category": "Women's Denim",
     "images": [
-      "https://picsum.photos/id/1062/1000/1250",
-      "https://picsum.photos/id/1069/1000/1250",
-      "https://picsum.photos/id/1082/1000/1250"
+      "assets/images/products/wd/jns/001/001.jpg",
+      "assets/images/products/wd/jns/001/002.jpg",
+      "assets/images/products/wd/jns/001/003.jpg"
     ],
     "video": "",
     "buyer": "Own Development",

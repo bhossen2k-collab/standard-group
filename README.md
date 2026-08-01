@@ -85,6 +85,17 @@ right after another block, add a comma between them, and change the values.
 - `video` — paste a link to an `.mp4` file, or leave it as `""` (empty) if there's no video.
 - `colors` — leave this as `"colors": []` if the product has no color options.
 
+**Image zoom:** on the product page, hovering over the main photo shows a
+magnifying lens (desktop), and clicking it opens a full-screen view where you
+can zoom in further (scroll wheel, +/− buttons, or pinch on mobile) and drag
+to pan around — no setup needed, this works automatically for every product.
+
+**Product video:** it now always shows next to the images, in its own
+"Product video" section under the photo thumbnails — not hidden behind a
+click. One sample product (`md-01`) has a placeholder demo video so you can
+see how it looks; replace `"video"` with a link to your own `.mp4` file (or
+leave it as `""` for products with no video).
+
 **Uploading real photos:** drop your image files into
 `assets/images/products/`, then reference them in the JSON like
 `"assets/images/products/your-filename.jpg"`.

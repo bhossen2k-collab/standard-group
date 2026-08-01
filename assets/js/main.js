@@ -182,15 +182,15 @@ async function renderProductDetail() {
   }
 
   document.title = `${p.name} — Standard Group`;
+  const crumb = document.getElementById("pd-crumb-current");
+  if (crumb) crumb.textContent = p.name;
 
-  const media = [...p.images];
+  const images = [...p.images];
   const hasVideo = Boolean(p.video);
 
-  const thumbsHTML = media.map((src, i) =>
-    `<div class="pd-thumb ${i === 0 ? "is-active" : ""}" data-type="image" data-src="${src}"><img src="${src}" alt="${p.name} view ${i + 1}"></div>`
-  ).join("") + (hasVideo
-    ? `<div class="pd-thumb is-video" data-type="video" data-src="${p.video}"><img src="${media[0]}" alt="${p.name} video"></div>`
-    : "");
+  const thumbsHTML = images.map((src, i) =>
+    `<div class="pd-thumb ${i === 0 ? "is-active" : ""}" data-index="${i}"><img src="${src}" alt="${p.name} view ${i + 1}"></div>`
+  ).join("");
 
   const specRows = [
     ["Buyer", p.buyer],
@@ -217,13 +217,25 @@ async function renderProductDetail() {
     `
     : "";
 
+  // The video sits in its own block, always visible alongside the images —
+  // not hidden behind a thumbnail swap.
+  const videoBlockHTML = hasVideo ? `
+    <div class="pd-video-block">
+      <span class="filter-label" style="display:block; margin-bottom:10px;">Product video</span>
+      <video src="${p.video}" controls playsinline poster="${images[0]}"></video>
+    </div>
+  ` : "";
+
   mount.innerHTML = `
     <div class="pd-grid">
       <div class="pd-gallery">
-        <div class="pd-gallery-main" id="pd-gallery-main">
-          <img src="${media[0]}" alt="${p.name}">
+        <div class="pd-gallery-main can-lens" id="pd-gallery-main">
+          <img src="${images[0]}" alt="${p.name}" id="pd-main-img">
+          <div class="pd-lens" id="pd-lens"></div>
+          <span class="pd-zoom-hint" id="pd-zoom-hint">🔍 Click to zoom</span>
         </div>
-        <div class="pd-thumbs">${thumbsHTML}</div>
+        <div class="pd-thumbs" id="pd-thumbs">${thumbsHTML}</div>
+        ${videoBlockHTML}
       </div>
       <div class="pd-info">
         <span class="eyebrow">${p.category}</span>
@@ -241,20 +253,26 @@ async function renderProductDetail() {
         </div>
       </div>
     </div>
+
+    <!-- Lightbox: click-to-enlarge, scroll/pinch to zoom, drag to pan -->
+    <div class="pd-lightbox" id="pd-lightbox">
+      <div class="pd-lightbox-caption" id="pd-lightbox-caption"></div>
+      <button class="pd-lightbox-close" id="pd-lightbox-close" aria-label="Close">✕</button>
+      <button class="pd-lightbox-nav prev" id="pd-lightbox-prev" aria-label="Previous image">‹</button>
+      <button class="pd-lightbox-nav next" id="pd-lightbox-next" aria-label="Next image">›</button>
+      <div class="pd-lightbox-stage" id="pd-lightbox-stage">
+        <img id="pd-lightbox-img" src="" alt="">
+      </div>
+      <div class="pd-lightbox-zoomctl">
+        <button id="pd-zoom-out" aria-label="Zoom out">−</button>
+        <span class="pct" id="pd-zoom-pct">100%</span>
+        <button id="pd-zoom-in" aria-label="Zoom in">+</button>
+        <button id="pd-zoom-reset" aria-label="Reset zoom" title="Reset">⤾</button>
+      </div>
+    </div>
   `;
 
-  const galleryMain = document.getElementById("pd-gallery-main");
-  mount.querySelectorAll(".pd-thumb").forEach(thumb => {
-    thumb.addEventListener("click", () => {
-      mount.querySelectorAll(".pd-thumb").forEach(t => t.classList.remove("is-active"));
-      thumb.classList.add("is-active");
-      const type = thumb.dataset.type;
-      const src = thumb.dataset.src;
-      galleryMain.innerHTML = type === "video"
-        ? `<video src="${src}" controls autoplay muted playsinline></video>`
-        : `<img src="${src}" alt="${p.name}">`;
-    });
-  });
+  bindGallery(p, images);
 
   // related products — same category, excluding current
   const relatedMount = document.getElementById("pd-related-grid");
@@ -264,6 +282,187 @@ async function renderProductDetail() {
       ? related.map(productCardHTML).join("")
       : `<div class="empty-state">More ${p.category} styles coming soon.</div>`;
   }
+}
+
+/* --------------------------- gallery: thumbs + magnifier + lightbox --------- */
+function bindGallery(p, images) {
+  const mainWrap = document.getElementById("pd-gallery-main");
+  const mainImg = document.getElementById("pd-main-img");
+  const lens = document.getElementById("pd-lens");
+  const thumbs = document.getElementById("pd-thumbs");
+  let currentIndex = 0;
+
+  function setActiveThumb(i) {
+    thumbs.querySelectorAll(".pd-thumb").forEach(t => t.classList.remove("is-active"));
+    const t = thumbs.querySelector(`.pd-thumb[data-index="${i}"]`);
+    if (t) t.classList.add("is-active");
+  }
+
+  function showImage(i) {
+    currentIndex = (i + images.length) % images.length;
+    mainImg.src = images[currentIndex];
+    setActiveThumb(currentIndex);
+  }
+
+  thumbs.addEventListener("click", e => {
+    const t = e.target.closest(".pd-thumb");
+    if (!t) return;
+    showImage(Number(t.dataset.index));
+  });
+
+  // ---- hover magnifier lens (desktop only, css also gates this) ----
+  mainWrap.addEventListener("mousemove", e => {
+    const rect = mainWrap.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
+
+    const lensSize = 160;
+    let lx = x - lensSize / 2;
+    let ly = y - lensSize / 2;
+    lx = Math.max(-lensSize / 4, Math.min(lx, rect.width - lensSize * 0.75));
+    ly = Math.max(-lensSize / 4, Math.min(ly, rect.height - lensSize * 0.75));
+    lens.style.left = `${lx}px`;
+    lens.style.top = `${ly}px`;
+
+    const zoom = 2.6;
+    lens.style.backgroundImage = `url("${images[currentIndex]}")`;
+    lens.style.backgroundSize = `${rect.width * zoom}px ${rect.height * zoom}px`;
+    const bgX = -(x * zoom - lensSize / 2);
+    const bgY = -(y * zoom - lensSize / 2);
+    lens.style.backgroundPosition = `${bgX}px ${bgY}px`;
+  });
+
+  // ---- click main image or thumbnail to open lightbox ----
+  mainWrap.addEventListener("click", () => openLightbox(currentIndex));
+  thumbs.addEventListener("dblclick", e => {
+    const t = e.target.closest(".pd-thumb");
+    if (t) openLightbox(Number(t.dataset.index));
+  });
+
+  /* ---------------- lightbox ---------------- */
+  const lightbox = document.getElementById("pd-lightbox");
+  const stage = document.getElementById("pd-lightbox-stage");
+  const lbImg = document.getElementById("pd-lightbox-img");
+  const caption = document.getElementById("pd-lightbox-caption");
+  const zoomPct = document.getElementById("pd-zoom-pct");
+  let lbIndex = 0;
+  let scale = 1, panX = 0, panY = 0;
+  let dragging = false, dragStartX = 0, dragStartY = 0, startPanX = 0, startPanY = 0;
+
+  function applyTransform() {
+    lbImg.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    zoomPct.textContent = `${Math.round(scale * 100)}%`;
+  }
+
+  function resetZoom() {
+    scale = 1; panX = 0; panY = 0;
+    applyTransform();
+  }
+
+  function openLightbox(i) {
+    lbIndex = i;
+    lbImg.src = images[lbIndex];
+    caption.textContent = `${p.name} — ${lbIndex + 1} / ${images.length}`;
+    resetZoom();
+    lightbox.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+
+  function nav(delta) {
+    lbIndex = (lbIndex + delta + images.length) % images.length;
+    lbImg.src = images[lbIndex];
+    caption.textContent = `${p.name} — ${lbIndex + 1} / ${images.length}`;
+    resetZoom();
+    showImage(lbIndex);
+  }
+
+  document.getElementById("pd-lightbox-close").addEventListener("click", closeLightbox);
+  document.getElementById("pd-lightbox-prev").addEventListener("click", () => nav(-1));
+  document.getElementById("pd-lightbox-next").addEventListener("click", () => nav(1));
+  lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+
+  document.addEventListener("keydown", e => {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") nav(-1);
+    if (e.key === "ArrowRight") nav(1);
+    if (e.key === "+") zoomBy(0.25);
+    if (e.key === "-") zoomBy(-0.25);
+  });
+
+  function zoomBy(delta) {
+    scale = Math.max(1, Math.min(4, scale + delta));
+    if (scale === 1) { panX = 0; panY = 0; }
+    applyTransform();
+  }
+
+  document.getElementById("pd-zoom-in").addEventListener("click", () => zoomBy(0.35));
+  document.getElementById("pd-zoom-out").addEventListener("click", () => zoomBy(-0.35));
+  document.getElementById("pd-zoom-reset").addEventListener("click", resetZoom);
+
+  // scroll wheel to zoom
+  stage.addEventListener("wheel", e => {
+    e.preventDefault();
+    zoomBy(e.deltaY < 0 ? 0.2 : -0.2);
+  }, { passive: false });
+
+  // drag to pan when zoomed in
+  lbImg.addEventListener("mousedown", e => {
+    if (scale === 1) return;
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    startPanX = panX; startPanY = panY;
+  });
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    panX = startPanX + (e.clientX - dragStartX);
+    panY = startPanY + (e.clientY - dragStartY);
+    applyTransform();
+  });
+  window.addEventListener("mouseup", () => { dragging = false; });
+
+  // double-click image in lightbox to toggle zoom
+  lbImg.addEventListener("dblclick", () => {
+    if (scale === 1) { scale = 2; applyTransform(); }
+    else resetZoom();
+  });
+
+  // basic touch: pinch to zoom, drag to pan
+  let touchStartDist = null, touchStartScale = 1;
+  stage.addEventListener("touchstart", e => {
+    if (e.touches.length === 2) {
+      touchStartDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      touchStartScale = scale;
+    } else if (e.touches.length === 1 && scale > 1) {
+      dragging = true;
+      dragStartX = e.touches[0].clientX; dragStartY = e.touches[0].clientY;
+      startPanX = panX; startPanY = panY;
+    }
+  }, { passive: true });
+  stage.addEventListener("touchmove", e => {
+    if (e.touches.length === 2 && touchStartDist) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      scale = Math.max(1, Math.min(4, touchStartScale * (dist / touchStartDist)));
+      applyTransform();
+    } else if (e.touches.length === 1 && dragging) {
+      panX = startPanX + (e.touches[0].clientX - dragStartX);
+      panY = startPanY + (e.touches[0].clientY - dragStartY);
+      applyTransform();
+    }
+  }, { passive: true });
+  stage.addEventListener("touchend", () => { dragging = false; touchStartDist = null; });
 }
 
 /* --------------------------- mobile nav ------------------------------------ */
