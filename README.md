@@ -90,11 +90,15 @@ magnifying lens (desktop), and clicking it opens a full-screen view where you
 can zoom in further (scroll wheel, +/− buttons, or pinch on mobile) and drag
 to pan around — no setup needed, this works automatically for every product.
 
-**Product video:** it now always shows next to the images, in its own
-"Product video" section under the photo thumbnails — not hidden behind a
-click. One sample product (`md-01`) has a placeholder demo video so you can
-see how it looks; replace `"video"` with a link to your own `.mp4` file (or
-leave it as `""` for products with no video).
+**Product video:** it always shows next to the images, in its own
+"Product video" section under the photo thumbnails. You can use either:
+- A **YouTube link** — just paste the normal link, e.g.
+  `"video": "https://www.youtube.com/watch?v=cENEzJKmUvc"`
+  (do **not** paste the `<iframe>` embed code — just the plain link)
+- A **direct `.mp4` file link** — e.g.
+  `"video": "https://yoursite.com/videos/product-01.mp4"`
+
+Leave it as `"video": ""` for products with no video.
 
 **Uploading real photos:** drop your image files into
 `assets/images/products/`, then reference them in the JSON like
