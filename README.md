@@ -76,11 +76,30 @@ right after another block, add a comma between them, and change the values.
 **Rules that matter:**
 - `id` must be unique for every product (e.g. `md-02`, `md-03`...) — this is
   what makes the product's individual page link work.
-- `department` must be exactly `Men`, `Women`, or `Kids` (these three drive
-  the homepage sections).
+- `department` must be exactly `Men`, `Women`, or `Kids` for the main
+  lines — or `Development` for buyer-specific presentation pieces (see
+  below). These four drive the homepage sections.
 - `category` is the sub-line, e.g. `Men's Denim`, `Men's Shorts`,
   `Women's Outerwear`. Add a brand-new category any time just by typing a new
   name here — it will automatically appear on the homepage and in the filters.
+
+### Adding a "Development for [Brand]" section
+
+To pitch a buyer-specific collection (e.g. for Zara, Walmart, GANNI), add a
+product with:
+
+```json
+"department": "Development",
+"category": "Development for Walmart",
+```
+
+That's it. The homepage will automatically show a new section titled
+**"Development for the Presentation"**, with a card for
+**"Development for Walmart"**. Add another product with
+`"category": "Development for Zara"` and a second card appears next to it.
+
+Remove all products under a given category and its card disappears on its
+own — no HTML/JS editing needed either way.
 - `images` is a list — add as many as you want, first one is the main photo.
 - `video` — paste a link to an `.mp4` file, or leave it as `""` (empty) if there's no video.
 - `colors` — leave this as `"colors": []` if the product has no color options.

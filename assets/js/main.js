@@ -20,10 +20,30 @@ async function loadProducts() {
   return res.json();
 }
 
+// Department display order on the homepage. Add a new department name here
+// (matching what you type in products.json) to control where it appears.
+const DEPARTMENT_ORDER = ["Men", "Women", "Kids", "Development"];
+
+// How each department's section heading should read. If a department isn't
+// listed here, it falls back to "{Department} Capability".
+const DEPARTMENT_LABELS = {
+  "Men": "Men's Capability",
+  "Women": "Women's Capability",
+  "Kids": "Kids' Capability",
+  "Development": "Development for the Presentation"
+};
+
+function departmentLabel(dept) {
+  return DEPARTMENT_LABELS[dept] || `${dept} Capability`;
+}
+
 function departmentsOf(products) {
-  const order = ["Men", "Women", "Kids"];
   const set = [...new Set(products.map(p => p.department))];
-  return order.filter(d => set.includes(d));
+  // Known departments first, in the order above; anything new/unlisted
+  // still shows up, appended at the end, so nothing silently disappears.
+  const known = DEPARTMENT_ORDER.filter(d => set.includes(d));
+  const unknown = set.filter(d => !DEPARTMENT_ORDER.includes(d));
+  return [...known, ...unknown];
 }
 
 function categoriesOf(products, department) {
@@ -74,14 +94,14 @@ async function renderHomeCapabilities() {
     return `
       <div class="dept">
         <div class="dept-title">
-          <h3>${dept}'s Capability</h3>
+          <h3>${departmentLabel(dept)}</h3>
           <span class="count">${String(cats.length).padStart(2, "0")} lines</span>
         </div>
         <div class="cat-grid">
           ${cards}
           <a class="cat-card more" href="products.html?department=${encodeURIComponent(dept)}">
             <span class="tag">And more</span>
-            <h4>View full ${dept}'s range</h4>
+            <h4>View full ${dept} range</h4>
             <span class="go">All lines <span class="arrow">→</span></span>
           </a>
         </div>
@@ -166,6 +186,47 @@ async function renderCatalog() {
   });
 }
 
+function getYouTubeId(url) {
+  const patterns = [
+    /youtu\.be\/([^?&]+)/,
+    /youtube\.com\/embed\/([^?&]+)/,
+    /youtube\.com\/watch\?v=([^&]+)/,
+    /youtube\.com\/shorts\/([^?&]+)/
+  ];
+  for (const re of patterns) {
+    const m = url.match(re);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+function renderVideoEmbed(videoField, posterImage) {
+  const raw = videoField.trim();
+
+  // If someone pastes a full <iframe> embed code by mistake, pull the src out of it.
+  const iframeSrcMatch = raw.match(/src="([^"]+)"/);
+  const url = iframeSrcMatch ? iframeSrcMatch[1] : raw;
+
+  const ytId = getYouTubeId(url);
+  if (ytId) {
+    return `
+      <div class="pd-video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/${ytId}"
+          title="Product video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    `;
+  }
+
+  // Otherwise treat it as a direct .mp4 (or similar) file link.
+  return `<video src="${url}" controls playsinline poster="${posterImage}"></video>`;
+}
+
 /* --------------------------- product detail page --------------------------- */
 async function renderProductDetail() {
   const mount = document.getElementById("pd-root");
@@ -193,6 +254,7 @@ async function renderProductDetail() {
   ).join("");
 
   const specRows = [
+    ["Style Code", p.styleCode],
     ["Buyer", p.buyer],
     ["Fit", p.fit],
     ["Fabric", p.fabric],
@@ -211,18 +273,21 @@ async function renderProductDetail() {
       <div class="pd-colors">
         <span class="filter-label">Colour options</span>
         <div class="swatches">
-          ${p.colors.map(c => `<span class="swatch" style="background:${c.hex}" data-name="${c.name}"></span>`).join("")}
+        ${p.colors.map((c, i) => `<span class="swatch" style="background:${c.hex}" data-name="${c.name}" data-color-index="${i}"></span>`).join("")}
+
         </div>
       </div>
     `
     : "";
 
   // The video sits in its own block, always visible alongside the images —
-  // not hidden behind a thumbnail swap.
+  // not hidden behind a thumbnail swap. Supports either a direct .mp4 link
+  // or a YouTube link (any format: youtube.com/watch?v=, youtu.be/, or
+  // youtube.com/embed/).
   const videoBlockHTML = hasVideo ? `
     <div class="pd-video-block">
       <span class="filter-label" style="display:block; margin-bottom:10px;">Product video</span>
-      <video src="${p.video}" controls playsinline poster="${images[0]}"></video>
+      ${renderVideoEmbed(p.video, images[0])}
     </div>
   ` : "";
 
@@ -308,7 +373,24 @@ function bindGallery(p, images) {
     const t = e.target.closest(".pd-thumb");
     if (!t) return;
     showImage(Number(t.dataset.index));
+  })
+  
+  document.querySelectorAll(".swatch").forEach(sw => {
+  sw.addEventListener("click", () => {
+    const color = p.colors[Number(sw.dataset.colorIndex)];
+    if (!color || !color.images || !color.images.length) return;
+
+    images = color.images;
+    thumbs.innerHTML = images.map((src, i) =>
+      `<div class="pd-thumb ${i === 0 ? "is-active" : ""}" data-index="${i}"><img src="${src}" alt="${p.name} ${color.name} view ${i + 1}"></div>`
+    ).join("");
+    currentIndex = 0;
+    mainImg.src = images[0];
+
+    document.querySelectorAll(".swatch").forEach(s => s.classList.remove("is-active"));
+    sw.classList.add("is-active");
   });
+});;
 
   // ---- hover magnifier lens (desktop only, css also gates this) ----
   mainWrap.addEventListener("mousemove", e => {
