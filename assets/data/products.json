@@ -31,7 +31,9 @@
     "images": [
   "assets/images/products/wd/jns/SGSPWBJ27-002/01.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-002/02.avif",
-  "assets/images/products/wd/jns/SGSPWBJ27-002/03.avif"
+  "assets/images/products/wd/jns/SGSPWBJ27-002/03.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-002/04.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-002/05.avif"
     ],
     "video": "",
     "buyer": "Presentation — Walmart",
@@ -39,7 +41,6 @@
     "fit": "Wide-Leg",
     "fabric": "98% Cotton, 2% Elastane, 10oz",
     "colors": [
-      { "name": "Ecru", "hex": "#DCD3BF" },
       { "name": "Vintage Blue", "hex": "#5A6E9C" }
     ],
     "wash": "Acid Wash + PP Spray",
