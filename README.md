@@ -146,11 +146,57 @@ automatically within a minute or two.
 
 ## 5. Things you'll likely want to personalize
 
-- `hello@standardgroup.example` — replace with your real email, in
-  `index.html`, `products.html`, and `product.html` (search for it).
-- "Dhaka, Bangladesh" in the footer — replace with your real address if you want one listed.
+- Your real logo, email, phone and address are already wired in — no need
+  to touch these.
 - The homepage headline and About section copy in `index.html` — written to
   be a strong starting point, but make it sound like you.
+
+## 6. "Add to PPT" selection & export (new)
+
+Every product — on the catalog grid and on its own page — has a small red
+circle button (`+`). Clicking it adds that product to a shortlist (stored in
+the visitor's browser, nothing uploaded anywhere). A bar appears bottom-right
+showing how many are selected, with an **Export** button.
+
+Clicking Export opens a panel to review the shortlist and choose:
+- **Download PPTX** — a PowerPoint, one slide per product
+- **Download PDF** — a PDF, one page per product
+- **Download Both**
+
+Each slide/page always shows: the product's **first 2 photos**, full spec
+sheet, and your **logo top-right**, white background — automatically, no
+setup needed. This works for anyone browsing the live site (buyers included).
+
+**Nothing to configure** — it reads the same `products.json` file as
+everything else. If you remove a product from the JSON, it simply can't be
+selected anymore.
+
+## 7. Colour swatches that swap the photos
+
+To make a colour swatch show that colour's own photos when clicked, give it
+an `"images"` list in `products.json`:
+
+```json
+"colors": [
+  { "name": "Indigo Rinse", "hex": "#3A4A7A", "images": ["assets/images/products/md-01-indigo-a.jpg", "assets/images/products/md-01-indigo-b.jpg"] },
+  { "name": "Raw Black", "hex": "#1C1C1E", "images": ["assets/images/products/md-01-black-a.jpg"] }
+]
+```
+
+If a colour has no `"images"`, clicking it just keeps the default photos —
+nothing breaks. `md-01` in the sample data already shows this working.
+
+## What changed in this version
+
+- **Your logo** is now live at `assets/images/logo/logo.svg` — your real
+  wordmark, no placeholder. It also appears automatically at the top-right
+  of every exported PPTX/PDF page.
+- **Contact details**: real email, phone and address are wired into the
+  footer, the "Request this line" button, and the exports.
+- **Product page**: simplified — no clutter above the photo, images are now
+  a 3:4 ratio.
+- **Catalog page**: fabric line now shows in full (it was being cut short
+  before), and there's more breathing room between product cards.
 
 ## If something looks broken
 
@@ -159,3 +205,9 @@ automatically within a minute or two.
   [jsonlint.com](https://jsonlint.com) to find the exact error.
 - Logo not showing → double check the filename in the `src="..."` matches
   the actual file name exactly, including capital letters.
+- Export button does nothing / stuck on "Preparing…" → this usually means
+  one of your product images is hosted somewhere that blocks other sites
+  from reading it (a CORS restriction). Images hosted in your own
+  `assets/images/products/` folder never have this problem — that's the
+  safest place to keep your real product photography.
+

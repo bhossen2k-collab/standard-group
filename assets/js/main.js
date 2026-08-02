@@ -54,17 +54,20 @@ function categoriesOf(products, department) {
 
 /* --------------------------- product card ------------------------------- */
 function productCardHTML(p) {
+  const selected = isSelected(p.id);
   return `
     <a class="product-card" href="product.html?id=${encodeURIComponent(p.id)}">
       <div class="thumb">
         <span class="badge">${p.category}</span>
+        <button class="select-btn select-btn--on-image ${selected ? "is-selected" : ""}" data-select-id="${p.id}" aria-label="Add to selection">${selected ? "✓" : "+"}</button>
         <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
       </div>
       <div class="info">
         <div class="cat">${p.department} — Autumn 27</div>
         <h4>${p.name}</h4>
         <div class="spec">
-          <span>${p.fit} Fit · ${p.fabric.split(",")[0]}</span>
+          <span>${p.fit} Fit</span>
+          <span>${p.fabric}</span>
         </div>
       </div>
     </a>
@@ -187,16 +190,24 @@ async function renderCatalog() {
 }
 
 function getYouTubeId(url) {
+
+  // If only the ID is stored in JSON
+  if (/^[A-Za-z0-9_-]{11}$/.test(url.trim())) {
+    return url.trim();
+  }
+
   const patterns = [
     /youtu\.be\/([^?&]+)/,
     /youtube\.com\/embed\/([^?&]+)/,
     /youtube\.com\/watch\?v=([^&]+)/,
     /youtube\.com\/shorts\/([^?&]+)/
   ];
+
   for (const re of patterns) {
     const m = url.match(re);
     if (m) return m[1];
   }
+
   return null;
 }
 
@@ -246,7 +257,7 @@ async function renderProductDetail() {
   const crumb = document.getElementById("pd-crumb-current");
   if (crumb) crumb.textContent = p.name;
 
-  const images = [...p.images];
+  let images = [...p.images];
   const hasVideo = Boolean(p.video);
 
   const thumbsHTML = images.map((src, i) =>
@@ -261,7 +272,7 @@ async function renderProductDetail() {
     ["Wash", p.wash],
     ["Season", p.season],
     ["Size Range", p.sizeRange]
-  ].map(([k, v]) => `
+  ].filter(([, v]) => Boolean(v)).map(([k, v]) => `
     <div class="spec-row">
       <span class="k">${k}</span>
       <span class="v">${v}</span>
@@ -272,9 +283,8 @@ async function renderProductDetail() {
     ? `
       <div class="pd-colors">
         <span class="filter-label">Colour options</span>
-        <div class="swatches">
-        ${p.colors.map((c, i) => `<span class="swatch" style="background:${c.hex}" data-name="${c.name}" data-color-index="${i}"></span>`).join("")}
-
+        <div class="swatches" id="pd-swatches">
+          ${p.colors.map((c, i) => `<span class="swatch ${i === 0 ? "is-active" : ""}" style="background:${c.hex}" data-name="${c.name}" data-color-index="${i}"></span>`).join("")}
         </div>
       </div>
     `
@@ -291,21 +301,23 @@ async function renderProductDetail() {
     </div>
   ` : "";
 
+  const selected = isSelected(p.id);
+
   mount.innerHTML = `
     <div class="pd-grid">
       <div class="pd-gallery">
         <div class="pd-gallery-main can-lens" id="pd-gallery-main">
           <img src="${images[0]}" alt="${p.name}" id="pd-main-img">
           <div class="pd-lens" id="pd-lens"></div>
-          <span class="pd-zoom-hint" id="pd-zoom-hint">🔍 Click to zoom</span>
+          <span class="pd-zoom-icon" id="pd-zoom-hint" title="Click to zoom">🔍</span>
+          <button class="select-btn select-btn--on-image ${selected ? "is-selected" : ""}" data-select-id="${p.id}" aria-label="Add to selection">${selected ? "✓" : "+"}</button>
         </div>
         <div class="pd-thumbs" id="pd-thumbs">${thumbsHTML}</div>
         ${videoBlockHTML}
       </div>
       <div class="pd-info">
-        <span class="eyebrow">${p.category}</span>
         <h1>${p.name}</h1>
-        <div class="pd-designer">Designed by <span class="name">${p.designer}</span></div>
+        <div class="pd-meta">${p.category} · Designed by <span class="name">${p.designer}</span></div>
         ${colorsHTML}
         <div class="spec-sheet">${specRows}</div>
         <div class="pd-details">
@@ -313,8 +325,10 @@ async function renderProductDetail() {
           <p>${p.details}</p>
         </div>
         <div class="pd-actions">
-          <a class="btn btn-primary" href="mailto:hello@standardgroup.example?subject=${encodeURIComponent("Enquiry: " + p.name)}">Request this line <span class="btn-arrow">→</span></a>
-          <a class="btn btn-ghost" href="products.html">Back to catalog</a>
+          <a class="btn btn-primary" href="mailto:info@standardargroup.com?subject=${encodeURIComponent("Enquiry: " + p.name)}">Request this line <span class="btn-arrow">→</span></a>
+          <button class="btn btn-select ${selected ? "is-selected" : ""}" data-select-id="${p.id}">
+            <span class="dot">${selected ? "✓" : "+"}</span> ${selected ? "Added to selection" : "Add to PPT selection"}
+          </button>
         </div>
       </div>
     </div>
@@ -373,24 +387,28 @@ function bindGallery(p, images) {
     const t = e.target.closest(".pd-thumb");
     if (!t) return;
     showImage(Number(t.dataset.index));
-  })
-  
-  document.querySelectorAll(".swatch").forEach(sw => {
-  sw.addEventListener("click", () => {
-    const color = p.colors[Number(sw.dataset.colorIndex)];
-    if (!color || !color.images || !color.images.length) return;
-
-    images = color.images;
-    thumbs.innerHTML = images.map((src, i) =>
-      `<div class="pd-thumb ${i === 0 ? "is-active" : ""}" data-index="${i}"><img src="${src}" alt="${p.name} ${color.name} view ${i + 1}"></div>`
-    ).join("");
-    currentIndex = 0;
-    mainImg.src = images[0];
-
-    document.querySelectorAll(".swatch").forEach(s => s.classList.remove("is-active"));
-    sw.classList.add("is-active");
   });
-});;
+
+  // ---- colour swatches swap the gallery to that colour's photos ----
+  const swatchWrap = document.getElementById("pd-swatches");
+  if (swatchWrap) {
+    swatchWrap.addEventListener("click", e => {
+      const sw = e.target.closest(".swatch");
+      if (!sw) return;
+      const color = p.colors[Number(sw.dataset.colorIndex)];
+      if (!color || !color.images || !color.images.length) return;
+
+      images = color.images;
+      thumbs.innerHTML = images.map((src, i) =>
+        `<div class="pd-thumb ${i === 0 ? "is-active" : ""}" data-index="${i}"><img src="${src}" alt="${p.name} ${color.name} view ${i + 1}"></div>`
+      ).join("");
+      currentIndex = 0;
+      mainImg.src = images[0];
+
+      swatchWrap.querySelectorAll(".swatch").forEach(s => s.classList.remove("is-active"));
+      sw.classList.add("is-active");
+    });
+  }
 
   // ---- hover magnifier lens (desktop only, css also gates this) ----
   mainWrap.addEventListener("mousemove", e => {
