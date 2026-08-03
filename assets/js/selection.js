@@ -213,7 +213,7 @@ async function runExport(products, format) {
 /* --------------------------- image loading ------------------------------ */
 // Converts any image URL (same-origin file or a CORS-friendly remote image)
 // into a base64 data URL so it can be embedded into a generated PPTX/PDF.
-function loadImageAsDataURL(url, maxWidth = 1400, quality = 0.72) {
+function loadImageAsDataURL(url, maxWidth = 1400, quality = 0.30) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = "anonymous";
