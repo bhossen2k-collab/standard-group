@@ -30,6 +30,8 @@
     "details": "A cost-engineered five-pocket denim built for high-volume mass retail programs, developed against Walmart's typical price-point and quality benchmarks — presented here as a starting reference for review.",
     "designer": "Waliullah Shipon"
   },
+
+
   {
     "id": "SGSPWBJ27-002",
     "name": "Sashiko Embroidered Wide-Leg Jeans",
@@ -46,7 +48,7 @@
   "assets/images/products/wd/jns/SGSPWBJ27-002/08.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-002/09.avif"
     ],
-    "video": "https://www.youtube.com/watch?v=HKYAi_iaa6E",
+    "video": "https://youtube.com/shorts/ocYgaNWDS2M",
     "buyer": "Presentation — Walmart",
     "styleCode": "SGSPWBJ27-002",
     "fit": "Wide-Leg",
@@ -62,6 +64,8 @@
     "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
     "designer": "Waliullah Shipon"
   },
+
+
  {
     "id": "SGSPWBJ27-003",
     "name": "Directional Wide-Leg Denim",
@@ -102,6 +106,39 @@
     "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
     "designer": "Waliullah Shipon"
   },
+
+  {
+    "id": "SGSPWBJ27-004",
+    "name": "Wide Leg Trucker Jeans",
+    "department": "Development",
+    "category": "Women's Bottom",
+    "images": [
+  "assets/images/products/wd/jns/SGSPWBJ27-004/01.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-004/02.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-004/03.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-004/04.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-004/05.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-004/06.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-004/07.avif"
+ 
+],
+    "video": "https://youtube.com/shorts/rT-a12SAKes",
+    "styleCode": "SGSPWBJ27-004",
+    "buyer": "Presentation — Walmart",
+    "fit": "Regular",
+    "fabric": "99% Cotton, 1% Elastane, 11oz",
+    "colors": [
+      { "name": "Mid Blue", "hex": "#5f6e87" }
+    ],
+    "wash": "Enzyme Wash",
+    "embellishments": "N/A",
+    "season": "Autumn 27",
+    "sizeRange": "28 – 42",
+    "moq": "5000 pcs",
+    "details": "A cost-engineered five-pocket denim built for high-volume mass retail programs, developed against Walmart's typical price-point and quality benchmarks — presented here as a starting reference for review.",
+    "designer": "Waliullah Shipon"
+  },
+
    {
     "id": "SGSPWBS27-001",
     "name": "Tailored Denim Shorts",
