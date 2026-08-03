@@ -270,8 +270,10 @@ async function renderProductDetail() {
     ["Fit", p.fit],
     ["Fabric", p.fabric],
     ["Wash", p.wash],
+    ["Embellishments", p.embellishments],
     ["Season", p.season],
-    ["Size Range", p.sizeRange]
+    ["Size Range", p.sizeRange],
+    ["MOQ", p.moq]
   ].filter(([, v]) => Boolean(v)).map(([k, v]) => `
     <div class="spec-row">
       <span class="k">${k}</span>

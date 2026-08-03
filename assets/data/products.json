@@ -1,16 +1,21 @@
 [
   {
-    "id": "GSPWBJ27-001",
+    "id": "SGSPWBJ27-001",
     "name": "Essential Straight Denim — Value Program",
     "department": "Development",
-    "category": "Development for Walmart",
+    "category": "Women's Bottom",
     "images": [
   "assets/images/products/wd/jns/SGSPWBJ27-001/01.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-001/02.avif",
-  "assets/images/products/wd/jns/SGSPWBJ27-001/03.avif"
+  "assets/images/products/wd/jns/SGSPWBJ27-001/03.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-001/04.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-001/05.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-001/06.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-001/07.avif"
+ 
 ],
-    "video": "https://www.youtube.com/watch?v=HKYAi_iaa6E",
-    "styleCode": "GSPWBJ27-001",
+    "video": "assets/videos/products/wd/jns/SGSPWBJ27-001/vdo.mp4",
+    "styleCode": "SGSPWBJ27-001",
     "buyer": "Presentation — Walmart",
     "fit": "Regular",
     "fabric": "99% Cotton, 1% Elastane, 11oz",
@@ -18,16 +23,18 @@
       { "name": "Mid Blue", "hex": "#5D75AE" }
     ],
     "wash": "Enzyme Wash",
+    "embellishments": "Embroidery",
     "season": "Autumn 27",
     "sizeRange": "28 – 42",
+    "moq": "5000 pcs",
     "details": "A cost-engineered five-pocket denim built for high-volume mass retail programs, developed against Walmart's typical price-point and quality benchmarks — presented here as a starting reference for review.",
     "designer": "Waliullah Shipon"
   },
   {
-    "id": "GSPWBJ27-002",
+    "id": "SGSPWBJ27-002",
     "name": "Directional Wide-Leg Denim",
     "department": "Development",
-    "category": "Development for Walmart",
+    "category": "Women's Bottom",
     "images": [
   "assets/images/products/wd/jns/SGSPWBJ27-002/01.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-002/02.avif",
@@ -35,32 +42,34 @@
   "assets/images/products/wd/jns/SGSPWBJ27-002/04.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-002/05.avif"
     ],
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=HKYAi_iaa6E",
     "buyer": "Presentation — Walmart",
-    "styleCode": "GSPWBJ27-002",
+    "styleCode": "SGSPWBJ27-002",
     "fit": "Wide-Leg",
     "fabric": "98% Cotton, 2% Elastane, 10oz",
     "colors": [
       { "name": "Vintage Blue", "hex": "#5A6E9C" }
     ],
     "wash": "Acid Wash + PP Spray",
+    "embellishments": "Embroidery & Laser",
     "season": "Autumn 27",
     "sizeRange": "34 – 44 (EU)",
+    "moq": "5000 pcs",
     "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
     "designer": "Waliullah Shipon"
   },
  {
-    "id": "GSPWBJ27-003",
+    "id": "SGSPWBJ27-003",
     "name": "Directional Wide-Leg Denim",
     "department": "Development",
-    "category": "Development for Walmart",
+    "category": "Women's Bottom",
     "images": [
   "assets/images/products/wd/jns/SGSPWBJ27-003/01.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-003/02.avif"
     ],
     "video": "",
     "buyer": "Presentation — Walmart",
-    "styleCode": "GSPWBJ27-003",
+    "styleCode": "SGSPWBJ27-003",
     "fit": "Wide-Leg",
     "fabric": "98% Cotton, 2% Elastane, 10oz",
     "colors": [
@@ -82,8 +91,50 @@
   }
 ],
     "wash": "Acid Wash + PP Spray",
+    "embellishments": "N/A",
     "season": "Autumn 27",
     "sizeRange": "34 – 44 (EU)",
+    "moq": "9000 pcs",
+    "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
+    "designer": "Waliullah Shipon"
+  },
+   {
+    "id": "SGSPWBS27-001",
+    "name": "Tailored Denim Shorts",
+    "department": "Development",
+    "category": "Women's Bottom",
+    "images": [
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-001/01.avif",
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-001/02.avif"
+    ],
+    "video": "",
+    "buyer": "Presentation — Walmart",
+    "styleCode": "SGSPWBS27-001",
+    "fit": "Wide-Leg",
+    "fabric": "98% Cotton, 2% Elastane, 10oz",
+    "colors": [
+
+  {
+    "name": "Indigo Wash",
+    "hex": "#234168",
+    "images": [
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-001/01.avif",
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-001/02.avif"
+    ]
+  },
+  {     "name": "Light Wash",
+    "hex": "#4f688f",
+    "images": [
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-001/03.avif",
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-001/04.avif"
+    ]
+  }
+],
+    "wash": "Acid Wash + PP Spray",
+    "embellishments": "N/A",
+    "season": "Autumn 27",
+    "sizeRange": "34 – 44 (EU)",
+    "moq": "9000 pcs",
     "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
     "designer": "Waliullah Shipon"
   }

@@ -213,7 +213,39 @@ async function runExport(products, format) {
 /* --------------------------- image loading ------------------------------ */
 // Converts any image URL (same-origin file or a CORS-friendly remote image)
 // into a base64 data URL so it can be embedded into a generated PPTX/PDF.
-function loadImageAsDataURL(url) {
+function loadImageAsDataURL(url, maxWidth = 1400, quality = 0.72) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        // Scale down large photos — presentation/print doesn't need
+        // full camera resolution, and this is what keeps file size small.
+        const scale = Math.min(1, maxWidth / img.naturalWidth);
+        const w = Math.round(img.naturalWidth * scale);
+        const h = Math.round(img.naturalHeight * scale);
+
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+
+        resolve({
+          dataUrl: canvas.toDataURL("image/jpeg", quality),
+          width: w,
+          height: h
+        });
+      } catch (err) {
+        reject(err);
+      }
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+/*function loadImageAsDataURL(url) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = "anonymous";
