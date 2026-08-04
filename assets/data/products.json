@@ -139,6 +139,66 @@
     "designer": "Waliullah Shipon"
   },
 
+  {
+    "id": "SGSPWBJ27-005",
+    "name": "Sashiko Embroidered Wide-Leg Jeans",
+    "department": "Development",
+    "category": "Women's Bottom",
+    "images": [
+  "assets/images/products/wd/jns/SGSPWBJ27-005/01.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-005/02.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-005/03.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-005/04.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-005/05.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-005/06.avif"
+    ],
+    "video": "https://youtube.com/shorts/ftQw1eQrooA",
+    "buyer": "Presentation — Walmart",
+    "styleCode": "SGSPWBJ27-005",
+    "fit": "Wide-Leg",
+    "fabric": "98% Cotton, 2% Elastane, 10oz",
+    "colors": [
+      { "name": "Vintage Blue", "hex": "#344155" }
+    ],
+    "wash": "Acid Wash + PP Spray",
+    "embellishments": "Embroidery & Laser",
+    "season": "Autumn 27",
+    "sizeRange": "34 – 44 (EU)",
+    "moq": "5000 pcs",
+    "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
+    "designer": "Waliullah Shipon"
+  },
+
+  {
+    "id": "SGSPWBJ27-006",
+    "name": "Sashiko Embroidered Wide-Leg Jeans",
+    "department": "Development",
+    "category": "Women's Bottom",
+    "images": [
+  "assets/images/products/wd/jns/SGSPWBJ27-006/01.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-006/02.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-006/03.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-006/04.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-006/05.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-006/06.avif"
+    ],
+    "video": "https://youtube.com/shorts/Ghf8Nl5rk0M",
+    "buyer": "Presentation — Walmart",
+    "styleCode": "SGSPWBJ27-006",
+    "fit": "Wide-Leg",
+    "fabric": "98% Cotton, 2% Elastane, 10oz",
+    "colors": [
+      { "name": "Vintage Blue", "hex": "#344155" }
+    ],
+    "wash": "Acid Wash + PP Spray",
+    "embellishments": "Embroidery & Laser",
+    "season": "Autumn 27",
+    "sizeRange": "34 – 44 (EU)",
+    "moq": "8000 pcs",
+    "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
+    "designer": "Waliullah Shipon"
+  },
+
    {
     "id": "SGSPWBS27-001",
     "name": "Tailored Denim Shorts",

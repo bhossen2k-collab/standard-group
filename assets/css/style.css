@@ -8,7 +8,7 @@
 :root{
   /* --- Color tokens --- */
   --milk:        #ffffff;   /* primary background */
-  --milk-deep:   #ffffff;   /* card / section-alt background */
+  --milk-deep:   #ffc8c8;   /* card / section-alt background */
   --paper-line:  #c1c1c1;   /* hairline borders on milk */
   --ink:         #17181C;   /* primary text */
   --ink-soft:    #5B5D66;   /* secondary text */
