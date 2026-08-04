@@ -147,6 +147,7 @@
     "images": [
   "assets/images/products/wd/jns/SGSPWBJ27-005/01.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-005/02.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-005/00.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-005/03.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-005/04.avif",
   "assets/images/products/wd/jns/SGSPWBJ27-005/05.avif",
@@ -200,17 +201,17 @@
   },
 
    {
-    "id": "SGSPWBS27-001",
-    "name": "Tailored Denim Shorts",
+    "id": "SGSPWBSK27-001",
+    "name": "Tailored Denim Skirt",
     "department": "Development",
-    "category": "Women's Bottom",
+    "category": "Women's Skirt",
     "images": [
   "assets/images/products/wd/shorts/denim/SGSPWBS27-001/01.avif",
   "assets/images/products/wd/shorts/denim/SGSPWBS27-001/02.avif"
     ],
     "video": "",
     "buyer": "Presentation — Walmart",
-    "styleCode": "SGSPWBS27-001",
+    "styleCode": "SGSPWBSK27-001",
     "fit": "Wide-Leg",
     "fabric": "98% Cotton, 2% Elastane, 10oz",
     "colors": [
@@ -244,7 +245,7 @@
     "id": "SGSPWBS27-002",
     "name": "Mid Cut Denim Shorts",
     "department": "Development",
-    "category": "Women's Bottom",
+    "category": "Women's Shorts",
     "images": [
   "assets/images/products/wd/shorts/denim/SGSPWBS27-002/01.avif",
   "assets/images/products/wd/shorts/denim/SGSPWBS27-002/02.avif" 
