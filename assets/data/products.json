@@ -200,6 +200,36 @@
     "designer": "Waliullah Shipon"
   },
 
+  {
+    "id": "SGSPWBJ27-007",
+    "name": "The Twilight Haze Baggy Jeans",
+    "department": "Development",
+    "category": "Women's Bottom",
+    "images": [
+  "assets/images/products/wd/jns/SGSPWBJ27-007/01.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-007/02.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-007/03.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-007/04.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-007/05.avif",
+  "assets/images/products/wd/jns/SGSPWBJ27-007/06.avif"
+    ],
+    "video": "https://youtube.com/shorts/Nq-LhEQQF9o",
+    "buyer": "Presentation — Walmart",
+    "styleCode": "SGSPWBJ27-007",
+    "fit": "Wide-Leg",
+    "fabric": "98% Cotton, 2% Elastane, 10oz",
+    "colors": [
+      { "name": "Vintage Blue", "hex": "#344155" }
+    ],
+    "wash": "Acid Wash + PP Spray",
+    "embellishments": "Embroidery & Laser",
+    "season": "Autumn 27",
+    "sizeRange": "34 – 44 (EU)",
+    "moq": "8000 pcs",
+    "details": "A trend-forward silhouette developed in the fast-fashion pace and fit logic typical of Zara's contemporary denim lines — a presentation piece to open a development conversation, not a copy of any existing product.",
+    "designer": "Waliullah Shipon"
+  },
+
    {
     "id": "SGSPWBSK27-001",
     "name": "Tailored Denim Skirt",
@@ -248,7 +278,11 @@
     "category": "Women's Shorts",
     "images": [
   "assets/images/products/wd/shorts/denim/SGSPWBS27-002/01.avif",
-  "assets/images/products/wd/shorts/denim/SGSPWBS27-002/02.avif" 
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-002/02.avif",
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-002/03.avif",
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-002/04.avif",
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-002/05.avif",
+  "assets/images/products/wd/shorts/denim/SGSPWBS27-002/06.avif"
 ],
     "video": "https://youtube.com/shorts/rT-a12SAKes",
     "styleCode": "SGSPWBS27-002",
